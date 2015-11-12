@@ -10,6 +10,19 @@ function checkgrow()
 	end
 end
 
+function planter()
+	bool,data = turtle.inspectDown()
+	turtle.select(1)
+	if bool then
+			return 0
+		else
+			if turtle.getItemCount(1) > 1 then
+				turtle.placeDown()
+			end
+			return 1
+		end
+end
+
 while true do
 	if rs.getInput("back") == false then
 		print("please turn on redstone signal from back")
@@ -22,18 +35,21 @@ while true do
 		for i=1,depth-1,1 do
 			turtle.forward()
 			checkgrow()
+			planter()
 		end
 		if i ~= width-1 then
 			if lr_flag == 0 then
 				turtle.turnLeft()
 				turtle.forward()
 				checkgrow()
+				planter()
 				turtle.turnLeft()
 				lr_flag = 1
 			elseif lr_flag == 1 then
 				turtle.turnRight()
 				turtle.forward()
 				checkgrow()
+				planter()
 				turtle.turnRight()
 				lr_flag = 0
 			end
@@ -50,6 +66,7 @@ while true do
 	end
 	
 	checkgrow()
+	planter()
 	turtle.turnRight()
 	turtle.turnRight()
 
