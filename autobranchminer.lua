@@ -6,9 +6,21 @@ function forwarder()
 	flag = true
 	while flag do
 		if turtle.forward() then
+			turtle.digDown()
 			flag = false
 		else
 			turtle.dig()
+		end
+	end
+end
+
+function torchPlacer()
+	flag = true
+	turtle.select(1)
+	while flag do
+		if turtle.placeDown() then
+			flag = false
+		else
 			turtle.digDown()
 		end
 	end
@@ -19,8 +31,7 @@ function oneminer(length)
 	for i=1,length do
 		forwarder()
 		if i%4 == 0 then
-			turtle.select(1)
-			turtle.placeDown()
+			torchPlacer()
 		end
 	end
 	for i=1,length do
@@ -31,6 +42,7 @@ end
 function lr_work(lr)
 	if lr == "right" then
 		turtle.turnRight()
+		forwarder()
 		forwarder()
 		turtle.turnLeft()
 	elseif lr == "left" then
