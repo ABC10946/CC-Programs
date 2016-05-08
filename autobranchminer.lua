@@ -1,16 +1,30 @@
 --autobranchminer
---select 1 is torch storage
+--slot 1 is torch storage
 
+
+function forwarder()
+	flag = true
+	while flag do
+		if turtle.forward() then
+			turtle.digDown()
+			flag = false
+		else
+			turtle.dig()
+		end
+	end
+end
+
+function torchPlacer()
+	turtle.select(1)
+	turtle.placeDown()
+end
 
 function oneminer(length)
 	turtle.digDown()
 	for i=1,length do
-		turtle.dig()
-		turtle.forward()
-		turtle.digDown()
+		forwarder()
 		if i%4 == 0 then
-			turtle.select(1)
-			turtle.placeDown()
+			torchPlacer()
 		end
 	end
 	for i=1,length do
@@ -21,21 +35,17 @@ end
 function lr_work(lr)
 	if lr == "right" then
 		turtle.turnRight()
-		turtle.dig()
-		turtle.forward()
-		turtle.digDown()
-		turtle.dig()
-		turtle.forward()
-		turtle.digDown()
+		forwarder()
+		forwarder()
+		forwarder()
+		forwarder()
 		turtle.turnLeft()
 	elseif lr == "left" then
 		turtle.turnLeft()
-		turtle.dig()
-		turtle.forward()
-		turtle.digDown()
-		turtle.dig()
-		turtle.forward()
-		turtle.digDown()
+		forwarder()
+		forwarder()
+		forwarder()
+		forwarder()
 		turtle.turnRight()
 	end
 end
