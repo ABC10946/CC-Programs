@@ -52,6 +52,12 @@ if a == false then
 end
 
 while true do
-	lumber()
-	planter()
+    if turtle.getFuelLevel() < 20 then
+        print("LOW FUEL!")
+        rs.setOutput("bottom",true)
+        break
+    else
+        lumber()
+        planter()
+    end
 end
