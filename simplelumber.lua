@@ -1,20 +1,20 @@
 function lumber()
 	turtle.select(2)
-	a,b = turtle.inspect()
 	count = 0
-	while b["name"] == "minecraft:log" do
+	while turtle.compare() do
+        turtle.select(3)
 		turtle.dig()
 		turtle.digUp()
 		turtle.up()
-		a,b = turtle.inspect()
 		count = count + 1
+        turtle.select(2)
 	end
 	for i=1,count do
 		turtle.down()
 	end
-	if turtle.getItemCount(2) ~= 0 then
+	if turtle.getItemCount(3) ~= 0 then
 		turtle.turnLeft()
-		for i=2,16 do
+		for i=3,16 do
 			turtle.select(i)
 			turtle.drop()
 		end
