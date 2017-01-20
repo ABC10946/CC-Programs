@@ -5,7 +5,7 @@ function checkGlow()
 	if bool then
 		if data.metadata == 7 then
 			return 1
-		elseif metadata ~= 7 then
+		else
 			return 0
 		end
 	else
@@ -26,7 +26,7 @@ function planter(value)
 	if value == -1 and turtle.getItemCount(1) > 1 then
 		turtle.placeDown()
 		return 1
-	else 
+	else
 		return 0
 	end
 end
